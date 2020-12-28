@@ -83,7 +83,7 @@
       :absolute="!fixed"
       app
     >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <span>&copy; {{ new Date().getFullYear() }} - <strong>ePermitting</strong></span>
     </v-footer>
   </v-app>
 </template>
@@ -103,14 +103,14 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          title: 'Permitting',
+          to: '/permitting'
         }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'ePermit'
     }
   }
 }
