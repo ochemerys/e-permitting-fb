@@ -11,7 +11,10 @@
         </v-card-title>
         <v-card-text>
           <p>
-            ePermitting is a NUXT boilerplate impelmented with Vuetify UI framework.
+            ePermitting is a NUXT and Firebase boilerplate impelmented with Vuetify UI framework.
+          </p>
+          <p>
+            It supports Firepase Authentication / Authorization and Firestore.
           </p>
         </v-card-text>
         <v-card-actions>
