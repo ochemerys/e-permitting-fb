@@ -65,3 +65,31 @@ heroku open
 ```
 
 For detailed explanation on heroku deployment, check out [Nuxt.js docs](https://nuxtjs.org/faq/heroku-deployment).
+
+## Debugging Nuxt.js with VS Code
+
+### Nuxt Configuration
+
+In ***nuxt.config.js*** add to ```build``` section
+
+``` javascript
+  build: {
+    extend(config, ctx) {
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      }
+    }
+  }
+```
+
+### VS Code Configuration
+
+Ensure Chrome Debugger extension exists in VS Code
+
+Update launch.json under .vscode folder
+
+Now, go into the VS Code debugger and launch fullstack configuration which will spin up nuxt and open chrome in debug mode pointing to our app.
+
+There are two debug processes running, one for the client and one for the server. To set breakpoint in server middleware, make sure the server debug process is selected.
+
+Conversely, on the client, set our debug process to the client, set breakpoint in a component method and then execute the method in the browser.

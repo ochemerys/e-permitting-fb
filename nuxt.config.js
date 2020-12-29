@@ -23,6 +23,11 @@ export default {
   plugins: [
   ],
 
+  // Router settings
+  router: {
+    middleware: ['authenticated']
+  },
+
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
 
@@ -65,6 +70,12 @@ export default {
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
+  // add source maps for client and server for debugging in VS Code
   build: {
+    extend (config, ctx) {
+      if (ctx.isDev) {
+        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+      }
+    }
   }
 }
