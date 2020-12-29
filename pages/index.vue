@@ -22,9 +22,16 @@
           <v-btn
             color="primary"
             nuxt
-            to="/permitting"
+            to="/register"
           >
-            Continue
+            Register
+          </v-btn>
+          <v-btn
+            color="primary"
+            nuxt
+            to="/login"
+          >
+            Login
           </v-btn>
         </v-card-actions>
       </v-card>

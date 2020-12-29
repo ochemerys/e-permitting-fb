@@ -1,4 +1,4 @@
-import * as firebase from 'firebase/app'
+import firebase from 'firebase/app'
 import 'firebase/auth'
 
 // Your web app's Firebase configuration
@@ -15,9 +15,9 @@ const firebaseConfig = {
 // Initialize Firebase
 // eslint-disable-next-line import/no-mutable-exports
 
-if (firebase.app.length) {
+if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig)
-  firebase.analytics()
+  // firebase.analytics()
 }
 
-export default firebase
+export const auth = firebase.auth()
