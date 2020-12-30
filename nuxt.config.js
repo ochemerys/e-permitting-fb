@@ -42,13 +42,13 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
+    // '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa'
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  // axios: {},
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
@@ -77,5 +77,18 @@ export default {
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
       }
     }
+  },
+
+  // Environment Variables Configuration
+  publicRuntimeConfig: {
+    authDomain: 'e-permitting-fb.firebaseapp.com',
+    projectId: 'e-permitting-fb',
+    storageBucket: 'e-permitting-fb.appspot.com',
+    messagingSenderId: '109697209608',
+    appId: '1:109697209608:web:fa20a4b6de57aa9d3d48bd',
+    measurementId: 'G-25MZZ3CMB2'
+  },
+  privateRuntimeConfig: {
+    apiKey: process.env.FB_API_KEY
   }
 }
