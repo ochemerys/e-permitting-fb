@@ -1,7 +1,7 @@
 export default function ({ store, route, redirect }) {
   const user = store.state.users.user
 
-  const blockedRoute = /\/admin\/*/g
+  const blockedRoute = /\/settings\/*/g
   // if not logged in, prevent from going to restricted area
   if (!user && route.path.match(blockedRoute)) {
     redirect('/')
