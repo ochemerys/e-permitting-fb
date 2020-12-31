@@ -17,7 +17,8 @@
             It supports Firepase Authentication / Authorization and Firestore.
           </p>
         </v-card-text>
-        <v-card-actions>
+        <v-divider v-if="!isLoggedIn" />
+        <v-card-actions v-if="!isLoggedIn">
           <v-spacer />
           <v-btn
             color="primary"
@@ -40,6 +41,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 // import Logo from '~/components/Logo.vue'
 // import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
@@ -47,6 +49,14 @@ export default {
   components: {
     // Logo,
     // VuetifyLogo
+  },
+  data () {
+    return {
+    }
+  },
+  computed: {
+    ...mapGetters({ isLoggedIn: 'users/isUserLoggedIn' })
   }
+
 }
 </script>
