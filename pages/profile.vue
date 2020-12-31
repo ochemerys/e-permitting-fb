@@ -1,18 +1,10 @@
 <template>
   <v-card width="480" class="mx-auto mt-5">
     <v-card-title>
-      Register
+      My Profile
     </v-card-title>
     <v-card-text>
       <v-form ref="form" lazy-validation>
-        <!-- <v-text-field
-          v-model="displayName"
-          type="text"
-          label="User Name"
-          prepend-icon="mdi-account-circle"
-          :rules="[rules.required]"
-          required
-        /> -->
         <v-text-field
           v-model="userEmail"
           type="email"
@@ -21,22 +13,16 @@
           :rules="[rules.required, rules.email]"
           required
         />
-        <v-text-field
-          v-model="userPassword"
-          :type="showPassword ? 'text': 'password'"
-          label="Password"
-          prepend-icon="mdi-lock"
-          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-          :rules="[
-            rules.required,
-            rules.pswdMinLength,
-            rules.pswdUpper,
-            rules.pswdNumber,
-            rules.pswdSpecial
-          ]"
-          required
-          @click:append="showPassword=!showPassword"
-        />
+        <v-btn
+          block
+          small
+          @click="onChangePasswordRquest"
+        >
+          Request Password Change
+          <v-icon right dark>
+            mdi-cloud-upload
+          </v-icon>
+        </v-btn>
       </v-form>
     </v-card-text>
     <v-divider />
@@ -61,15 +47,9 @@ export default {
   data () {
     return {
       displayName: '',
-      userPassword: '',
       userEmail: '',
-      showPassword: false,
       rules: {
         required: v => !!v || 'Required.',
-        pswdMinLength: v => !v || (v && v.length >= 6) || 'Must have 5+ characters',
-        pswdUpper: v => !v || /(?=.*[A-Z])/.test(v) || 'Must have one uppercase character',
-        pswdNumber: v => !v || /(?=.*\d)/.test(v) || 'Must have one number',
-        pswdSpecial: v => !v || /([!@$%])/.test(v) || 'Must have one special character [!@#$%]',
         email: (value) => {
           const pattern = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_\-.]+)\.([a-zA-Z]{2,5})$/
           return pattern.test(value) || 'Invalid e-mail'
@@ -79,9 +59,7 @@ export default {
   },
   computed: {
     isUserChanged () {
-      // this.displayName !== '' &&
-      return this.userEmail !== '' &&
-        this.userPassword !== ''
+      return this.userEmail !== ''
     }
   },
   methods: {
@@ -105,10 +83,24 @@ export default {
           //   message: `ERROR: ${err.message}`
           // }
           // this.updateSnackbar(sb)
-          return
         }
-        this.$router.push('/login')
       }
+    },
+    async onChangePasswordRquest () {
+      // let sb
+      try {
+        await this.$store.dispatch('users/passwordChangeRequest', this.userEmail)
+        // sb = {
+        //   variant: 'primary',
+        //   message: 'INFO: Check your registered email to reset the password!'
+        // }
+      } catch (err) {
+        // sb = {
+        //   variant: 'error',
+        //   message: `ERROR: ${err.message}`
+        // }
+      }
+      // this.updateSnackbar(sb)
     }
   }
 
