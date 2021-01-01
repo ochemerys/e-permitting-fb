@@ -84,13 +84,18 @@
     >
       <span>&copy; {{ new Date().getFullYear() }} - <strong>ePermitting </strong></span>
     </v-footer>
+    <app-snackbar />
   </v-app>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import AppSnackbar from '@/components/app-snackbar.vue'
 
 export default {
+  components: {
+    AppSnackbar
+  },
   data () {
     return {
       clipped: true,
