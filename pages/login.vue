@@ -73,9 +73,10 @@ export default {
         await this.$store.dispatch('users/login', payload)
         this.$router.push('/permitting')
       } catch (err) {
-        // TODO: snackbar
-        // eslint-disable-next-line no-console
-        console.log('ERROR:', err)
+        this.$notifier.showMessage({
+          content: 'User name or password does not match.',
+          color: 'error'
+        })
       }
     }
   }

@@ -74,15 +74,9 @@ export default {
         }
         try {
           await this.$store.dispatch('users/create', payload)
+          this.$notifier.showMessage({ content: 'User created successfully!', color: 'success' })
         } catch (err) {
-          // eslint-disable-next-line no-console
-          console.log(err)
-          // TODO:
-          // const sb = {
-          //   variant: 'error',
-          //   message: `ERROR: ${err.message}`
-          // }
-          // this.updateSnackbar(sb)
+          this.$notifier.showMessage({ content: err.message, color: 'error' })
         }
       }
     },
@@ -90,17 +84,10 @@ export default {
       // let sb
       try {
         await this.$store.dispatch('users/passwordChangeRequest', this.userEmail)
-        // sb = {
-        //   variant: 'primary',
-        //   message: 'INFO: Check your registered email to reset the password!'
-        // }
+        this.$notifier.showMessage({ content: 'Check your registered email to reset the password!', color: 'primary' })
       } catch (err) {
-        // sb = {
-        //   variant: 'error',
-        //   message: `ERROR: ${err.message}`
-        // }
+        this.$notifier.showMessage({ content: err.message, color: 'error' })
       }
-      // this.updateSnackbar(sb)
     }
   }
 

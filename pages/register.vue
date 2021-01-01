@@ -97,14 +97,7 @@ export default {
         try {
           await this.$store.dispatch('users/create', payload)
         } catch (err) {
-          // eslint-disable-next-line no-console
-          console.log(err)
-          // TODO:
-          // const sb = {
-          //   variant: 'error',
-          //   message: `ERROR: ${err.message}`
-          // }
-          // this.updateSnackbar(sb)
+          this.$notifier.showMessage({ content: err.message, color: 'error' })
           return
         }
         this.$router.push('/login')

@@ -8,9 +8,8 @@ export default {
       try {
         await this.$store.dispatch('users/logout')
         this.$router.push('/')
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log('ERROR:', error)
+      } catch (err) {
+        this.$notifier.showMessage({ content: err.message, color: 'error' })
       }
     }
   }
