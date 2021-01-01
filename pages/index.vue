@@ -20,13 +20,13 @@
         <v-divider v-if="!isLoggedIn" />
         <v-card-actions v-if="!isLoggedIn">
           <v-spacer />
-          <v-btn
+          <!-- <v-btn
             color="primary"
             nuxt
             to="/register"
           >
             Register
-          </v-btn>
+          </v-btn> -->
           <v-btn
             color="primary"
             nuxt
