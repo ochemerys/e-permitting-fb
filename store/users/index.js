@@ -34,6 +34,10 @@ export const actions = {
   async create ({ commit }, account) {
     await auth.createUserWithEmailAndPassword(account.email, account.password)
   },
+  async updateEmail ({ commit }, account) {
+    await auth.currentUser.updateEmail(account.email)
+    commit('SET_USER', account)
+  },
   passwordChangeRequest (context, userEmail) {
     auth.sendPasswordResetEmail(userEmail)
   }

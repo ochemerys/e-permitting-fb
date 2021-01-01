@@ -43,11 +43,13 @@
 </template>
 
 <script>
+
 export default {
   data () {
     return {
-      displayName: '',
+      // displayName: '',
       userEmail: '',
+      currentDbUser: null,
       rules: {
         required: v => !!v || 'Required.',
         email: (value) => {
@@ -59,7 +61,15 @@ export default {
   },
   computed: {
     isUserChanged () {
-      return this.userEmail !== ''
+      return this.userEmail !== this.currentDbUser.email
+    }
+  },
+  created () {
+    const id = this.$store.state.users.user.uid
+    this.userEmail = this.$store.state.users.user.email
+    this.currentDbUser = {
+      uid: id,
+      email: this.userEmail
     }
   },
   methods: {
@@ -68,13 +78,14 @@ export default {
 
       if (isValid) {
         const payload = {
-          displayName: this.displayName,
-          email: this.userEmail,
-          password: this.userPassword
+          uid: this.currentDbUser.uid,
+          email: this.userEmail
         }
         try {
-          await this.$store.dispatch('users/create', payload)
-          this.$notifier.showMessage({ content: 'User created successfully!', color: 'success' })
+          await this.$store.dispatch('users/updateEmail', payload)
+          this.$notifier.showMessage({ content: 'User email updated successfully!', color: 'success' })
+          await this.$store.dispatch('users/logout')
+          this.$router.push('/login')
         } catch (err) {
           this.$notifier.showMessage({ content: err.message, color: 'error' })
         }
