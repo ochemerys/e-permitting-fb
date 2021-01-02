@@ -21,12 +21,12 @@
           </p>
           <ul>
             <li>
-              To install on Android, open Chrome browser and navigate to ePermitting.<br>
-              Tap the three-dot overflow menu in the top-right corner and then select ‘Add to home screen.’<br>
+              Android: open Chrome browser and navigate to ePermitting.
+              Tap the three-dot overflow menu in the top-right corner and then select "Add to home screen."
               Chrome will prompt you to enter a name for the app before adding it to your home screen.
             </li>
             <li>
-              To install on iOS, open Safary browser and navigate to ePermitting website.<br>
+              iOS: open Safary browser and navigate to ePermitting website.
               Tap the "Share" button and then tap "Add to Home Screen". Enter the name for the app and then tap add.
             </li>
           </ul>
@@ -34,13 +34,14 @@
         <v-divider v-if="!isLoggedIn" />
         <v-card-actions v-if="!isLoggedIn">
           <v-spacer />
-          <!-- <v-btn
+          <v-btn
+            v-if="!isProduction"
             color="primary"
             nuxt
             to="/register"
           >
             Register
-          </v-btn> -->
+          </v-btn>
           <v-btn
             color="primary"
             nuxt
@@ -66,6 +67,7 @@ export default {
   },
   data () {
     return {
+      isProduction: false
     }
   },
   computed: {
