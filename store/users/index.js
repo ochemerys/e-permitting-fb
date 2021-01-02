@@ -30,5 +30,28 @@ export const actions = {
     Cookie.remove('access_token')
 
     commit('REMOVE_USER')
+  },
+  async create ({ commit }, account) {
+    await auth.createUserWithEmailAndPassword(account.email, account.password)
+  },
+  async updateEmail ({ commit }, account) {
+    await auth.currentUser.updateEmail(account.email)
+    commit('SET_USER', account)
+  },
+  passwordChangeRequest (context, userEmail) {
+    auth.sendPasswordResetEmail(userEmail)
+  }
+}
+
+export const getters = {
+  isUserLoggedIn (state) {
+    return !!state.user
+  },
+  isUserAdmin (state) {
+    // TODO implement roles
+    return !!state.user && state.user.email === 'root@e-permitting.fb.com'
+  },
+  loggedUserName (state) {
+    return state.user ? state.user.email : ''
   }
 }

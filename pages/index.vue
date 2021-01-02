@@ -16,10 +16,26 @@
           <p>
             It supports Firepase Authentication / Authorization and Firestore.
           </p>
+          <p>
+            ePermitting is Progressive Web Application which supports offline mode and can be installed on mobile devices.
+          </p>
+          <ul>
+            <li>
+              Android: open Chrome browser and navigate to ePermitting.
+              Tap the three-dot overflow menu in the top-right corner and then select "Add to home screen."
+              Chrome will prompt you to enter a name for the app before adding it to your home screen.
+            </li>
+            <li>
+              iOS: open Safary browser and navigate to ePermitting website.
+              Tap the "Share" button and then tap "Add to Home Screen". Enter the name for the app and then tap add.
+            </li>
+          </ul>
         </v-card-text>
-        <v-card-actions>
+        <v-divider v-if="!isLoggedIn" />
+        <v-card-actions v-if="!isLoggedIn">
           <v-spacer />
           <v-btn
+            v-if="!isProduction"
             color="primary"
             nuxt
             to="/register"
@@ -40,6 +56,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 // import Logo from '~/components/Logo.vue'
 // import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
@@ -47,6 +64,15 @@ export default {
   components: {
     // Logo,
     // VuetifyLogo
+  },
+  data () {
+    return {
+      isProduction: false
+    }
+  },
+  computed: {
+    ...mapGetters({ isLoggedIn: 'users/isUserLoggedIn' })
   }
+
 }
 </script>
