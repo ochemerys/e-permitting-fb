@@ -16,6 +16,20 @@
           <p>
             It supports Firepase Authentication / Authorization and Firestore.
           </p>
+          <p>
+            ePermitting is Progressive Web Application which supports offline mode and can be installed on mobile devices.
+          </p>
+          <ul>
+            <li>
+              To install on Android, open Chrome browser and navigate to ePermitting.<br>
+              Tap the three-dot overflow menu in the top-right corner and then select ‘Add to home screen.’<br>
+              Chrome will prompt you to enter a name for the app before adding it to your home screen.
+            </li>
+            <li>
+              To install on iOS, open Safary browser and navigate to ePermitting website.<br>
+              Tap the "Share" button and then tap "Add to Home Screen". Enter the name for the app and then tap add.
+            </li>
+          </ul>
         </v-card-text>
         <v-divider v-if="!isLoggedIn" />
         <v-card-actions v-if="!isLoggedIn">
