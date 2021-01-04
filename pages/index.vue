@@ -67,11 +67,13 @@ export default {
   },
   data () {
     return {
-      isProduction: false
     }
   },
   computed: {
-    ...mapGetters({ isLoggedIn: 'users/isUserLoggedIn' })
+    ...mapGetters({ isLoggedIn: 'users/isUserLoggedIn' }),
+    isProduction () {
+      return this.$store.state.env.IS_PRODUCTION
+    }
   }
 
 }

@@ -90,7 +90,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import AppSnackbar from '@/components/app-snackbar.vue'
+import AppSnackbar from '~/components/app-snackbar.vue'
 
 export default {
   components: {
@@ -139,13 +139,16 @@ export default {
     ...mapGetters(
       {
         isLoggedIn: 'users/isUserLoggedIn',
-        isAdmin: 'users/isUserAdmin',
-        loggedUser: 'users/loggedUserName'
+        loggedUser: 'users/loggedUserEmail'
       }
     ),
+    isUserAdmin () {
+      // TODO implement roles
+      return this.loggedUser === this.$store.state.env.ROOT_USER_EMAIL
+    },
     availableMainMenuItems () {
       const isAuthed = this.isLoggedIn
-      const isAdmin = this.isAdmin
+      const isAdmin = this.isUserAdmin
       return this.mainMenuItems.filter((item) => {
         const authValid = !item.requiresAuth || (item.requiresAuth && isAuthed)
         const adminValid = !item.requiresAdmin || (item.requiresAdmin && isAdmin)
