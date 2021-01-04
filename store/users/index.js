@@ -1,5 +1,5 @@
-import { auth } from '@/services/firebase.conf'
 import Cookie from 'js-cookie'
+// import { auth } from '~/plugins/firebase.conf'
 
 export const state = () => ({
   user: null
@@ -16,30 +16,30 @@ export const mutations = {
 
 export const actions = {
   async login ({ commit }, account) {
-    await auth.signInWithEmailAndPassword(account.email, account.password)
-    const token = await auth.currentUser.getIdToken()
-    const { email, uid } = auth.currentUser
+    await this.$auth.signInWithEmailAndPassword(account.email, account.password)
+    const token = await this.$auth.currentUser.getIdToken()
+    const { email, uid } = this.$auth.currentUser
 
     Cookie.set('access_token', token)
 
     commit('SET_USER', { email, uid })
   },
   async logout ({ commit }, account) {
-    await auth.signOut()
+    await this.$auth.signOut()
 
     Cookie.remove('access_token')
 
     commit('REMOVE_USER')
   },
   async create ({ commit }, account) {
-    await auth.createUserWithEmailAndPassword(account.email, account.password)
+    await this.$auth.createUserWithEmailAndPassword(account.email, account.password)
   },
   async updateEmail ({ commit }, account) {
-    await auth.currentUser.updateEmail(account.email)
+    await this.$auth.currentUser.updateEmail(account.email)
     commit('SET_USER', account)
   },
   passwordChangeRequest (context, userEmail) {
-    auth.sendPasswordResetEmail(userEmail)
+    this.$auth.sendPasswordResetEmail(userEmail)
   }
 }
 
@@ -47,11 +47,7 @@ export const getters = {
   isUserLoggedIn (state) {
     return !!state.user
   },
-  isUserAdmin (state) {
-    // TODO implement roles
-    return !!state.user && state.user.email === 'root@e-permitting.fb.com'
-  },
-  loggedUserName (state) {
+  loggedUserEmail (state) {
     return state.user ? state.user.email : ''
   }
 }

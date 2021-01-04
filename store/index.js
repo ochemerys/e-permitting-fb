@@ -1,6 +1,16 @@
 import jwtDecode from 'jwt-decode'
 import cookieParser from 'cookieparser'
 
+export const state = () => ({
+  env: {}
+})
+
+export const mutations = {
+  SET_ENV (state, env) {
+    state.env = env
+  }
+}
+
 export const actions = {
   // this will run on server
   nuxtServerInit ({ commit }, { req }) {
