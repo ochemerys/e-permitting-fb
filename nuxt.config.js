@@ -22,6 +22,7 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     '~/plugins/notifier.js',
+    '~/plugins/firebase.js'
   ],
 
   // Router settings
